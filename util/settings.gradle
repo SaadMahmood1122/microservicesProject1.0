@@ -1,0 +1,4 @@
+rootProject.name = 'util'
+include ':api'
+project(':api').projectDir = file('../api')
+

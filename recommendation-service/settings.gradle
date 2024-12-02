@@ -1,0 +1,6 @@
+rootProject.name = 'recommendation-service'
+
+include ':api'
+project(':api').projectDir = file('../api')
+include ':util'
+project(':util').projectDir = file('../util')

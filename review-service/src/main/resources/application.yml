@@ -1,0 +1,14 @@
+server:
+  port: 7003
+spring:
+  application:
+    name: review-service
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  port: 8080
