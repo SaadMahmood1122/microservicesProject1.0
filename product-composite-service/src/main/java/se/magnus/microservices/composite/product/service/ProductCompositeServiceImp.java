@@ -2,6 +2,7 @@ package se.magnus.microservices.composite.product.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 import se.magnus.microservices.api.composite.product.ProductAggregate;
 import se.magnus.microservices.api.composite.product.RecommendationSummary;
@@ -11,17 +12,28 @@ import se.magnus.microservices.api.core.product.Product;
 import se.magnus.microservices.api.core.recommendation.Recommendation;
 import se.magnus.microservices.api.core.review.Review;
 import se.magnus.microservices.util.http.ServiceUtil;
+import se.magnus.microservices.api.composite.product.ProductCompositeService;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class ProductCompositeService implements se.magnus.microservices.api.composite.product.ProductCompositeService {
+public class ProductCompositeServiceImp implements ProductCompositeService {
     private final ServiceUtil serviceUtil;
     private final ProductCompositeIntegration integration;
+    @Value("${api.product-composite.get-composite-product.description}")
+    private String productDescription;
+
+    @Value("${api.product-composite.get-composite-product.notes}")
+    private String productNotes;
+
+    @Value("${api.responseCodes.ok.description}")
+    private String okDescription;
 
     @Autowired
-    public ProductCompositeService(ServiceUtil serviceUtil, ProductCompositeIntegration integration) {
+    public ProductCompositeServiceImp(ServiceUtil serviceUtil, ProductCompositeIntegration integration) {
+
         this.serviceUtil = serviceUtil;
         this.integration = integration;
     }
